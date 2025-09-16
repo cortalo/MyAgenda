@@ -143,3 +143,209 @@ em {
 	font-style: normal;
 	color: red;
 }
+
+/* Org Agenda Styles */
+.agenda-container {
+	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	background: #fff;
+	padding: 20px;
+	max-width: 1200px;
+}
+
+.agenda-title {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 0;
+}
+
+.agenda-header {
+	border-bottom: 2px solid #e0e0e0;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.filter-bar .btn-group .btn {
+	border-radius: 3px;
+	margin-right: 2px;
+	font-size: 12px;
+}
+
+.filter-bar .btn.active {
+	background-color: #007bff;
+	color: white;
+	border-color: #007bff;
+}
+
+/* Day Entry Styles */
+.day-entry {
+	margin-bottom: 30px;
+}
+
+.day-header h4 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #2e8b57;
+	background-color: #f0f8ff;
+	padding: 8px 12px;
+	margin: 0;
+	border-left: 4px solid #2e8b57;
+	font-family: monospace;
+}
+
+.agenda-items {
+	background: #fafafa;
+	border-left: 2px solid #e0e0e0;
+	margin-left: 20px;
+}
+
+/* Agenda Item Styles */
+.agenda-item {
+	display: flex;
+	padding: 8px 15px;
+	border-bottom: 1px solid #f0f0f0;
+	font-family: monospace;
+	font-size: 14px;
+	line-height: 1.4;
+	transition: background-color 0.2s;
+}
+
+.agenda-item:hover {
+	background-color: #f8f8f8;
+	cursor: pointer;
+}
+
+.agenda-item:last-child {
+	border-bottom: none;
+}
+
+.item-time {
+	min-width: 100px;
+	color: #666;
+	font-weight: bold;
+	margin-right: 15px;
+	flex-shrink: 0;
+}
+
+.item-content {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+
+/* TODO Keywords */
+.todo-keyword {
+	font-weight: bold;
+	padding: 2px 6px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+.todo-keyword {
+	background-color: #ff4757;
+	color: white;
+}
+
+.done-keyword {
+	background-color: #2ed573;
+	color: white;
+}
+
+/* Item Title */
+.item-title {
+	flex: 1;
+	color: #333;
+	margin-right: 10px;
+}
+
+.done .item-title {
+	text-decoration: line-through;
+	color: #888;
+}
+
+/* Tags */
+.item-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.tag {
+	background-color: #e9ecef;
+	color: #495057;
+	padding: 2px 6px;
+	border-radius: 12px;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.tag:hover {
+	background-color: #dee2e6;
+}
+
+/* Task status styles */
+.todo {
+	border-left: 3px solid #007bff;
+}
+
+.done {
+	border-left: 3px solid #2ed573;
+	opacity: 0.7;
+}
+
+/* Modal styles for better org-mode feel */
+.modal-content {
+	border: none;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+	background-color: #f8f9fa;
+	border-bottom: 2px solid #e9ecef;
+}
+
+.modal-title {
+	font-family: monospace;
+	font-weight: bold;
+}
+
+/* Form styling */
+.form-control, .form-control:focus {
+	font-family: monospace;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.agenda-container {
+		padding: 10px;
+	}
+
+	.agenda-item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.item-time {
+		margin-bottom: 5px;
+		margin-right: 0;
+	}
+
+	.day-header h4 {
+		font-size: 14px;
+		padding: 6px 10px;
+	}
+}
+
+/* Keyboard shortcut styles */
+kbd {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	color: #495057;
+	font-family: monospace;
+	font-size: 0.875rem;
+	padding: 0.2rem 0.4rem;
+}
