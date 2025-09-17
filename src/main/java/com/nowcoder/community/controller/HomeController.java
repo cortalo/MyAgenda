@@ -38,10 +38,6 @@ public class HomeController implements CommunityConstant {
     public String getIndexPage(Model model) {
 
         User user = hostHolder.getUser();
-        if (user != null) {
-            model.addAttribute("user", user);
-        }
-
         LocalDate today = LocalDate.now();
 
         // Get a list of dates for this week (Monday to Sunday)

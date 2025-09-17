@@ -21,6 +21,9 @@ public class AgendaController {
     @Autowired
     private HostHolder hostHolder;
 
+    @Autowired
+    private AgendaEntryService agendaEntryService;
+
 
     @LoginRequired
     @RequestMapping(path = "/add", method = RequestMethod.GET)
@@ -55,9 +58,7 @@ public class AgendaController {
         agendaEntry.setEndTime(endTime);
         agendaEntry.setUserId(hostHolder.getUser().getId());
         agendaEntry.setCreateTime(new Date());
-
-        System.out.println(agendaEntry);
-
+        agendaEntryService.addAgendaEntry(agendaEntry);
 
         return "redirect:/index";
 

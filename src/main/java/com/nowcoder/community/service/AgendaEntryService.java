@@ -18,4 +18,8 @@ public class AgendaEntryService {
         return agendaEntryMapper.selectAgendaEntriesByDay(userId, startTime);
     }
 
+    public int addAgendaEntry(AgendaEntry agendaEntry) {
+        return agendaEntryMapper.insertAgendaEntry(agendaEntry);
+    }
+
 }
