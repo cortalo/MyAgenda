@@ -27,7 +27,8 @@ public class AgendaController {
 
     @LoginRequired
     @RequestMapping(path = "/add", method = RequestMethod.GET)
-    public String getAddTaskPage() {
+    public String getAddTaskPage(Model model) {
+        model.addAttribute("today", new Date());
         return "/site/add-task";
     }
 
