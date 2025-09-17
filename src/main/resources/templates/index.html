@@ -93,9 +93,9 @@
             <!-- Agenda View -->
             <ul class="agenda-view">
                 <!-- Day Entry -->
-                <li class="day-entry" th:each="map:${discussPosts}">
+                <li class="day-entry" th:each="day:${days}">
                     <div class="day-header">
-                        <h4>Monday    16 September 2024</h4>
+                        <h4 th:text="${day.formattedDate}"></h4>
                     </div>
                     <ul class="agenda-items">
                         <li class="agenda-item todo">
