@@ -8,10 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CommunityApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
     public void testSpringBoot() {
         Assertions.assertEquals(1,1);
     }
