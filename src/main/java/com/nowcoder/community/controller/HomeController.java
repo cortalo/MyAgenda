@@ -7,6 +7,7 @@ import com.nowcoder.community.service.AgendaEntryService;
 import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CookieUtil;
+import com.nowcoder.community.util.HostHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,15 @@ public class HomeController implements CommunityConstant {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String getIndexPage(Model model, HttpServletRequest request) {
+    @Autowired
+    private HostHolder hostHolder;
 
-        String ticket = CookieUtil.getValue(request, "ticket");
-        if (ticket != null && !StringUtils.isBlank(ticket)) {
-            LoginTicket loginTicket = userService.findLoginTicketByTicket(ticket);
-            if (loginTicket != null && loginTicket.getStatus() == LOGIN_TICKET_VALID) {
-                User user = userService.findUserById(loginTicket.getUserId());
-                model.addAttribute("user", user);
-            }
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    public String getIndexPage(Model model) {
+
+        User user = hostHolder.getUser();
+        if (user != null) {
+            model.addAttribute("user", user);
         }
 
         LocalDate today = LocalDate.now();

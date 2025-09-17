@@ -26,11 +26,11 @@
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link" th:href="@{/index}">Home</a>
                         </li>
-                        <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" th:href="@{/register}" th:if="${user==null}">Register</a>
+                        <li class="nav-item ml-3 btn-group-vertical" th:if="${user==null}">
+                            <a class="nav-link" th:href="@{/register}">Register</a>
                         </li>
-                        <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" th:href="@{/login}" th:if="${user==null}">Login</a>
+                        <li class="nav-item ml-3 btn-group-vertical" th:if="${user==null}">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical dropdown" th:if="${user!=null}">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
