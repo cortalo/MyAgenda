@@ -27,7 +27,7 @@
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link position-relative" href="site/letter.html">Msgs<span class="badge badge-danger">12</span></a>
+                            <a class="nav-link position-relative" href="site/letter.html">Msgs</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link" href="site/register.html">Register</a>
@@ -99,7 +99,10 @@
                     </div>
                     <ul class="agenda-items" th:if="${day.agendaCounts!=0}">
                         <li class="agenda-item todo" th:each="agenda:${day.agendaEntries}">
-                            <div class="item-time" th:text="${#dates.format(agenda.startTime,'yyyy-MM-dd HH:mm:ss')}">09:00-10:00</div>
+                            <div class="item-time" >
+                                <span th:text="${#dates.format(agenda.startTime,'HH:mm')}">09:00</span>-<span
+                                    th:text="${#dates.format(agenda.endTime,'HH:mm')}">10:00</span>
+                            </div>
                             <div class="item-content">
                                 <span class="todo-keyword">TODO</span>
                                 <span class="item-title" th:utext="${agenda.title}">Team meeting: Project review</span>

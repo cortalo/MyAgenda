@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,16 @@ public class MapperTests {
 
     @Test
     public void testSelectAgenda() {
+//        AgendaEntry agendaEntry = new AgendaEntry();
+//        agendaEntry.setUserId(149);
+//        agendaEntry.setTitle("task 2");
+//        agendaEntry.setContent("task 2 content");
+//        agendaEntry.setType(0);
+//        agendaEntry.setCreateTime(new Date());
+//        agendaEntry.setStartTime(new Date(2025-1900, Calendar.SEPTEMBER, 17, 15, 30));
+//        agendaEntry.setEndTime(new Date(2025-1900, Calendar.SEPTEMBER, 17, 16, 30));
+//        agendaEntryMapper.insertAgendaEntry(agendaEntry);
+
         List<AgendaEntry> list = agendaEntryMapper.selectAgendaEntries(149);
         for (AgendaEntry entry : list) {
             System.out.println(entry);
