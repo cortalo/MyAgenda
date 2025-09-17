@@ -9,10 +9,12 @@ public class AgendaEntry {
     private String title;
     private String content;
     /* type: {0: TYPE_TODO, 1: TYPE_DONE} */
-    private int type;
+    private int type = 0;
     private Date createTime;
     private Date startTime;
     private Date endTime;
+    /* repeatDays: {0: no repeat, N: repeat every N day}, note that repeat is reserved keyword in mysql */
+    private int repeatDays = 0;
 
     public int getId() {
         return id;
@@ -78,6 +80,14 @@ public class AgendaEntry {
         this.endTime = endTime;
     }
 
+    public int getRepeatDays() {
+        return repeatDays;
+    }
+
+    public void setRepeatDays(int repeatDays) {
+        this.repeatDays = repeatDays;
+    }
+
     @Override
     public String toString() {
         return "AgendaEntry{" +
@@ -89,6 +99,7 @@ public class AgendaEntry {
                 ", createTime=" + createTime +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", repeatDays=" + repeatDays +
                 '}';
     }
 }

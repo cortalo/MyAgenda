@@ -31,6 +31,7 @@ CREATE TABLE `agenda_entry` (
   `create_time` timestamp NULL DEFAULT NULL,
   `start_time` timestamp NULL DEFAULT NULL,
   `end_time` timestamp NULL DEFAULT NULL,
+  `repeat_days` int(11) DEFAULT NULL COMMENT 'REPEAT BY DAYS',
   PRIMARY KEY (`id`),
   KEY `index_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

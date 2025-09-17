@@ -39,7 +39,6 @@ public class MapperTests {
 //        agendaEntry.setUserId(149);
 //        agendaEntry.setTitle("task 2");
 //        agendaEntry.setContent("task 2 content");
-//        agendaEntry.setType(0);
 //        agendaEntry.setCreateTime(new Date());
 //        agendaEntry.setStartTime(new Date(2025-1900, Calendar.SEPTEMBER, 17, 15, 30));
 //        agendaEntry.setEndTime(new Date(2025-1900, Calendar.SEPTEMBER, 17, 16, 30));

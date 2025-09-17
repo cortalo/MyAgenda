@@ -5,16 +5,16 @@
 <mapper namespace="com.nowcoder.community.dao.AgendaEntryMapper">
 
     <sql id="selectFields">
-        id, user_id, title, content, type, create_time, start_time, end_time
+        id, user_id, title, content, type, create_time, start_time, end_time, repeat_days
     </sql>
 
     <sql id="insertFields">
-        user_id, title, content, type, create_time, start_time, end_time
+        user_id, title, content, type, create_time, start_time, end_time, repeat_days
     </sql>
 
     <insert id="insertAgendaEntry" parameterType="AgendaEntry" keyProperty="id">
         insert into agenda_entry (<include refid="insertFields"></include>)
-        values (#{userId}, #{title}, #{content}, #{type}, #{createTime}, #{startTime}, #{endTime})
+        values (#{userId}, #{title}, #{content}, #{type}, #{createTime}, #{startTime}, #{endTime}, #{repeatDays})
     </insert>
 
     <select id="selectAgendaEntries" resultType="AgendaEntry">
