@@ -12,3 +12,6 @@ use community;
 source init_shema.sql
 source init_data.sql
 ```
+
+for the model itself it is easy to use, e.g., `th:if="${commentNotice!=null}"` as filter.
+But after inside a map, I need to use `th:if="${day.agendaCounts!=0}"` as filter.

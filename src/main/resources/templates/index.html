@@ -97,12 +97,12 @@
                     <div class="day-header">
                         <h4 th:text="${day.formattedDate}"></h4>
                     </div>
-                    <ul class="agenda-items">
-                        <li class="agenda-item todo">
-                            <div class="item-time">09:00-10:00</div>
+                    <ul class="agenda-items" th:if="${day.agendaCounts!=0}">
+                        <li class="agenda-item todo" th:each="agenda:${day.agendaEntries}">
+                            <div class="item-time" th:text="${#dates.format(agenda.startTime,'yyyy-MM-dd HH:mm:ss')}">09:00-10:00</div>
                             <div class="item-content">
                                 <span class="todo-keyword">TODO</span>
-                                <span class="item-title">Team meeting: Project review</span>
+                                <span class="item-title" th:utext="${agenda.title}">Team meeting: Project review</span>
                                 <span class="item-tags">
                                     <span class="tag">:work:</span>
                                     <span class="tag">:meeting:</span>

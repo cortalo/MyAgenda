@@ -24,5 +24,13 @@
         order by start_time desc
     </select>
 
+    <select id="selectAgendaEntriesByDay" resultType="AgendaEntry">
+        select <include refid="selectFields"></include>
+        from agenda_entry
+        where user_id = #{userId}
+        and DATE(start_time) = DATE(#{startTime})
+        order by start_time asc
+    </select>
+
 
 </mapper>
