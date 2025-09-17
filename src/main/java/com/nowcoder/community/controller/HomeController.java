@@ -1,7 +1,14 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.entity.AgendaEntry;
+import com.nowcoder.community.entity.LoginTicket;
+import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.AgendaEntryService;
+import com.nowcoder.community.service.UserService;
+import com.nowcoder.community.util.CommunityConstant;
+import com.nowcoder.community.util.CookieUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +22,26 @@ import java.time.DayOfWeek;
 import java.util.*;
 
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
 
     @Autowired
     private AgendaEntryService agendaEntryService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String getIndexPage(Model model) {
+    public String getIndexPage(Model model, HttpServletRequest request) {
+
+        String ticket = CookieUtil.getValue(request, "ticket");
+        if (ticket != null && !StringUtils.isBlank(ticket)) {
+            LoginTicket loginTicket = userService.findLoginTicketByTicket(ticket);
+            if (loginTicket != null && loginTicket.getStatus() == LOGIN_TICKET_VALID) {
+                User user = userService.findUserById(loginTicket.getUserId());
+                model.addAttribute("user", user);
+            }
+        }
+
         LocalDate today = LocalDate.now();
 
         // Get a list of dates for this week (Monday to Sunday)
