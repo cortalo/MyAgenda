@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,7 +36,8 @@ public class HomeController implements CommunityConstant {
     private HostHolder hostHolder;
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String getIndexPage(Model model) {
+    public String getIndexPage(Model model,
+                               @RequestParam(name = "current", required = false, defaultValue = "0") int current) {
 
         User user = hostHolder.getUser();
         LocalDate today = LocalDate.now();
@@ -44,7 +46,7 @@ public class HomeController implements CommunityConstant {
         LocalDate monday = today.with(DayOfWeek.MONDAY);
         List<LocalDate> weekDates = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            weekDates.add(monday.plusDays(i));
+            weekDates.add(monday.plusDays(i + current * 7));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy");
 
@@ -65,6 +67,7 @@ public class HomeController implements CommunityConstant {
             days.add(map);
         }
         model.addAttribute("days", days);
+        model.addAttribute("current", current);
         return "/index";
     }
 

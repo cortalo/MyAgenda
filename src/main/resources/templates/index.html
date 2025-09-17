@@ -63,9 +63,9 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2 class="agenda-title">Org Agenda</h2>
                     <div class="agenda-controls">
-                        <button type="button" class="btn btn-outline-primary btn-sm mr-2" id="todayBtn">Today</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm mr-2" id="weekBtn">Week</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm mr-2" id="monthBtn">Month</button>
+                        <a class="btn btn-outline-secondary btn-sm mr-2" th:href="@{/index(current=${current-1})}"> &xlarr; </a>
+                        <a class="btn btn-outline-primary btn-sm mr-2" th:href="@{/index}">Today</a>
+                        <a class="btn btn-outline-secondary btn-sm mr-2" th:href="@{/index(current=${current+1})}"> &xrarr; </a>
                         <a class="btn btn-primary btn-sm" th:href="@{/agenda/add}">Add Task</a>
                     </div>
                 </div>
@@ -79,9 +79,6 @@
                                 <button type="button" class="btn btn-outline-success" data-filter="done">Done</button>
                                 <button type="button" class="btn btn-outline-secondary" data-filter="todo">Todo</button>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search tasks...">
                         </div>
                     </div>
                 </div>
