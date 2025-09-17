@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/agenda")
 public class AgendaController {
 
+
+    @RequestMapping(path = "/add", method = RequestMethod.GET)
+    public String getAddTaskPage() {
+        return "/site/add-task";
+    }
+
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String addAgenda(Model model, String taskTitle) {
-        System.out.println("title is: " + taskTitle);
+    public String addTask(Model model, String title) {
+        System.out.println("title is: " + title);
         return "redirect:/index";
     }
 

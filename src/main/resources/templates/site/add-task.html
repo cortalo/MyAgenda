@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <title>Add Task</title>
+</head>
+<body>
+<div class="nk-container">
+    <!-- header -->
+    <header class="bg-dark sticky-top" th:replace="index::header">
+    </header>
+
+    <!-- content -->
+    <div class="main">
+        <div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
+            <h3 class="text-center text-info border-bottom pb-3">Add New Task</h3>
+            <form class="mt-5" method="post" th:action="@{/agenda/add}">
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 col-form-label text-right">Title:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"
+                               name="title" value=""
+                               id="title" placeholder="Enter task title" required>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <label for="content" class="col-sm-2 col-form-label text-right">Description:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                                  name="content"
+                                  id="content" rows="3"
+                                  placeholder="Enter task description">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <label for="startTime" class="col-sm-2 col-form-label text-right">Start Time:</label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" class="form-control"
+                               name="startTime" value="2024-09-18T09:00"
+                               id="startTime" required>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <label for="endTime" class="col-sm-2 col-form-label text-right">End Time:</label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" class="form-control"
+                               name="endTime" value="2024-09-18T10:00"
+                               id="endTime" required>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <label for="type" class="col-sm-2 col-form-label text-right">Status:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="type" id="type" required>
+                            <option value="">Select status</option>
+                            <option value="0" selected>TODO</option>
+                            <option value="1">DONE</option>
+                            <option value="2">CANCELLED</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10 text-center">
+                        <button type="submit" class="btn btn-info text-white form-control">Add Task</button>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10 text-center">
+                        <a href="/index" class="btn btn-secondary form-control">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/global.js}"></script>
+</body>
+</html>
