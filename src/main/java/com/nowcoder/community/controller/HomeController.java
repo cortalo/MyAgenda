@@ -56,7 +56,7 @@ public class HomeController implements CommunityConstant {
             map.put("date", date);
             map.put("formattedDate", date.format(formatter));
             if (user == null) {
-                List<AgendaEntry> agendaEntries = agendaEntryService.findAgendaEntriesByDay(149, date.atStartOfDay());
+                List<AgendaEntry> agendaEntries = agendaEntryService.example(date.atStartOfDay());
                 map.put("agendaEntries", agendaEntries);
                 map.put("agendaCounts", agendaEntries.size());
             } else {
