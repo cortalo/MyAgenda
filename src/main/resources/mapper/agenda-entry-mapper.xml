@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nowcoder.community.dao.AgendaEntryMapper">
+
+    <sql id="selectFields">
+        id, user_id, title, content, type, create_time, start_time, end_time
+    </sql>
+
+    <sql id="insertFields">
+        user_id, title, content, type, create_time, start_time, end_time
+    </sql>
+
+    <insert id="insertAgendaEntry" parameterType="AgendaEntry" keyProperty="id">
+        insert into agenda_entry (<include refid="insertFields"></include>)
+        values (#{userId}, #{title}, #{content}, #{type}, #{createTime}, #{startTime}, #{endTime})
+    </insert>
+
+    <select id="selectAgendaEntries" resultType="AgendaEntry">
+        select <include refid="selectFields"></include>
+        from agenda_entry
+        where user_id = #{userId}
+        order by start_time desc
+    </select>
+
+
+</mapper>

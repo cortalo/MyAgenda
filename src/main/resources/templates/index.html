@@ -91,14 +91,14 @@
             </div>
 
             <!-- Agenda View -->
-            <div class="agenda-view">
+            <ul class="agenda-view">
                 <!-- Day Entry -->
-                <div class="day-entry">
+                <li class="day-entry" th:each="map:${discussPosts}">
                     <div class="day-header">
                         <h4>Monday    16 September 2024</h4>
                     </div>
-                    <div class="agenda-items">
-                        <div class="agenda-item todo">
+                    <ul class="agenda-items">
+                        <li class="agenda-item todo">
                             <div class="item-time">09:00-10:00</div>
                             <div class="item-content">
                                 <span class="todo-keyword">TODO</span>
@@ -108,83 +108,10 @@
                                     <span class="tag">:meeting:</span>
                                 </span>
                             </div>
-                        </div>
-
-                        <div class="agenda-item todo">
-                            <div class="item-time">14:30-16:00</div>
-                            <div class="item-content">
-                                <span class="todo-keyword">TODO</span>
-                                <span class="item-title">Code review for feature branch</span>
-                                <span class="item-tags">
-                                    <span class="tag">:dev:</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="agenda-item done">
-                            <div class="item-time">10:00-11:30</div>
-                            <div class="item-content">
-                                <span class="todo-keyword done-keyword">DONE</span>
-                                <span class="item-title">Update documentation</span>
-                                <span class="item-tags">
-                                    <span class="tag">:docs:</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Day Entry -->
-                <div class="day-entry">
-                    <div class="day-header">
-                        <h4>Tuesday   17 September 2024</h4>
-                    </div>
-                    <div class="agenda-items">
-                        <div class="agenda-item todo">
-                            <div class="item-time">11:00-12:30</div>
-                            <div class="item-content">
-                                <span class="todo-keyword">TODO</span>
-                                <span class="item-title">Client presentation prep</span>
-                                <span class="item-tags">
-                                    <span class="tag">:client:</span>
-                                    <span class="tag">:important:</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="agenda-item todo">
-                            <div class="item-time">16:00-17:00</div>
-                            <div class="item-content">
-                                <span class="todo-keyword">TODO</span>
-                                <span class="item-title">Clean up test environment</span>
-                                <span class="item-tags">
-                                    <span class="tag">:maintenance:</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Day Entry -->
-                <div class="day-entry">
-                    <div class="day-header">
-                        <h4>Wednesday 18 September 2024</h4>
-                    </div>
-                    <div class="agenda-items">
-                        <div class="agenda-item todo">
-                            <div class="item-time">09:30-11:00</div>
-                            <div class="item-content">
-                                <span class="todo-keyword">TODO</span>
-                                <span class="item-title">Database migration planning</span>
-                                <span class="item-tags">
-                                    <span class="tag">:database:</span>
-                                    <span class="tag">:planning:</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
             <!-- Add Task Modal -->
             <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
