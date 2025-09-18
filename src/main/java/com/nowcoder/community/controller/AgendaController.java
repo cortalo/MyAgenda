@@ -3,6 +3,7 @@ package com.nowcoder.community.controller;
 import com.nowcoder.community.annotation.LoginRequired;
 import com.nowcoder.community.entity.AgendaEntry;
 import com.nowcoder.community.service.AgendaEntryService;
+import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/agenda")
-public class AgendaController {
+public class AgendaController implements CommunityConstant {
 
     @Autowired
     private HostHolder hostHolder;
@@ -34,7 +35,8 @@ public class AgendaController {
 
     @LoginRequired
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String addTask(Model model, AgendaEntry agendaEntry, String dateString, String startTimeString, String endTimeString) {
+    public String addTask(Model model, AgendaEntry agendaEntry, String dateString, String startTimeString,
+                          String endTimeString, int repeatType, String repeatNum) {
 
         // Combine date and time strings to create full datetime strings
         String startDateTimeString = dateString + " " + startTimeString + ":00";
@@ -59,6 +61,27 @@ public class AgendaController {
         agendaEntry.setEndTime(endTime);
         agendaEntry.setUserId(hostHolder.getUser().getId());
         agendaEntry.setCreateTime(new Date());
+
+
+        // repeat information
+        int repeatNumInt = 0;
+        try {
+            repeatNumInt = Integer.parseInt(repeatNum);
+        } catch (Exception e) {
+            repeatNumInt = 0;
+        }
+
+        switch (repeatType) {
+            case REPEAT_TYPE_WEEK:
+                agendaEntry.setRepeatDays(7*repeatNumInt);
+                break;
+            case REPEAT_TYPE_DAY:
+                agendaEntry.setRepeatDays(repeatNumInt);
+                break;
+            default:
+                agendaEntry.setRepeatDays(0);
+        }
+
         agendaEntryService.addAgendaEntry(agendaEntry);
 
         return "redirect:/index";

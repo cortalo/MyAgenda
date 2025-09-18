@@ -9,4 +9,8 @@ public interface CommunityConstant {
     int LOGIN_TICKET_VALID = 0;
     int LOGIN_TICKET_INVALID = 1;
 
+    int REPEAT_TYPE_NO_REPEAT = 0;
+    int REPEAT_TYPE_WEEK = 1;
+    int REPEAT_TYPE_DAY = 2;
+
 }

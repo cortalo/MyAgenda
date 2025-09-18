@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +20,30 @@ public class AgendaEntryService {
     private AgendaEntryMapper agendaEntryMapper;
 
     public List<AgendaEntry> findAgendaEntriesByDay(int userId, LocalDateTime startTime) {
-        return agendaEntryMapper.selectAgendaEntriesByDay(userId, startTime);
+        List<AgendaEntry> nonRepeatEntries = agendaEntryMapper.selectAgendaEntriesByDay(userId, startTime);
+        List<AgendaEntry> repeatEntries = agendaEntryMapper.selectAgendaEntries(userId, 1);
+
+        List<AgendaEntry> filerRepeat = new ArrayList<>();
+        if (!repeatEntries.isEmpty()) {
+            for (AgendaEntry entry : repeatEntries) {
+                // Convert Date to LocalDateTime
+                LocalDateTime entryStartTime = entry.getStartTime()
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime()
+                        .toLocalDate()
+                        .atStartOfDay();
+
+                long diff = ChronoUnit.DAYS.between(entryStartTime, startTime);
+                if (diff >= 0 && diff % entry.getRepeatDays() == 0) {
+                    filerRepeat.add(entry);
+                }
+            }
+        }
+
+        nonRepeatEntries.addAll(filerRepeat);
+
+        return nonRepeatEntries;
     }
 
     public int addAgendaEntry(AgendaEntry agendaEntry) {

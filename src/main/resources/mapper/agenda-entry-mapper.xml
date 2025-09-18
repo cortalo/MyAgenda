@@ -21,6 +21,12 @@
         select <include refid="selectFields"></include>
         from agenda_entry
         where user_id = #{userId}
+        <if test="repeatMode==0">
+            and repeat_days = 0
+        </if>
+        <if test="repeatMode!=0">
+            and repeat_days != 0
+        </if>
         order by start_time desc
     </select>
 
@@ -29,6 +35,7 @@
         from agenda_entry
         where user_id = #{userId}
         and DATE(start_time) = DATE(#{startTime})
+        and repeat_days = 0
         order by start_time asc
     </select>
 
