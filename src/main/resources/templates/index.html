@@ -14,37 +14,29 @@
     <header class="bg-dark sticky-top" th:fragment="header">
         <div class="container">
             <!-- navigation -->
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-md navbar-dark">
                 <!-- logo -->
-                <a class="navbar-brand" th:href="@{/index}"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<!--                <a class="navbar-brand" th:href="@{/index}">Agenda</a>-->
+<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                    <span class="navbar-toggler-icon"></span>-->
+<!--                </button>-->
                 <!-- functions -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" th:href="@{/index}">Home</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical" th:if="${loginUser==null}">
-                            <a class="nav-link" th:href="@{/register}">Register</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical" th:if="${loginUser==null}">
-                            <a class="nav-link" th:href="@{/login}">Login</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical dropdown" th:if="${loginUser!=null}">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="http://images.nowcoder.com/head/1t.png" class="rounded-circle" style="width:30px;"/>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<!--                                <a class="dropdown-item text-center" href="site/profile.html">Profile</a>-->
-<!--                                <a class="dropdown-item text-center" href="site/setting.html">Setting</a>-->
-                                <a class="dropdown-item text-center" th:href="@{/logout}">Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <span class="dropdown-item text-center text-secondary" th:utext="${loginUser.username}">nowcoder</span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="navbar-nav w-100 d-flex flex-column flex-md-row" id="navbarSupportedContent">
+                    <a class="nav-link ml-3" th:href="@{/index}">Home</a>
+                    <a class="nav-link ml-3" th:href="@{/register}" th:if="${loginUser==null}">Register</a>
+                    <a class="nav-link ml-3" th:href="@{/login}" th:if="${loginUser==null}">Login</a>
+                    <div class="nav-item dropdown ml-3" th:if="${loginUser!=null}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="http://images.nowcoder.com/head/1t.png" class="rounded-circle" style="width:30px;"/>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<!--                            <a class="dropdown-item text-center" href="site/profile.html">Profile</a>-->
+<!--                            <a class="dropdown-item text-center" href="site/setting.html">Setting</a>-->
+                            <a class="dropdown-item text-center" th:href="@{/logout}">Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <span class="dropdown-item text-center text-secondary" th:utext="${loginUser.username}">nowcoder</span>
+                        </div>
+                    </div>
                     <!-- search -->
 <!--                    <form class="form-inline my-2 my-lg-0" action="site/search.html">-->
 <!--                        <input class="form-control mr-sm-2" type="search" aria-label="Search" />-->
@@ -60,13 +52,17 @@
         <div class="container agenda-container">
             <!-- Agenda Header -->
             <div class="agenda-header">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2 class="agenda-title">Org Agenda</h2>
-                    <div class="agenda-controls">
-                        <a class="btn btn-outline-secondary btn-sm mr-2" th:href="@{/index(current=${current-1})}"> &xlarr; </a>
-                        <a class="btn btn-outline-primary btn-sm mr-2" th:href="@{/index}">Today</a>
-                        <a class="btn btn-outline-secondary btn-sm mr-2" th:href="@{/index(current=${current+1})}"> &xrarr; </a>
-                        <a class="btn btn-primary btn-sm" th:href="@{/agenda/add}">Add Task</a>
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                        <h2 class="agenda-title mb-0">Org Agenda</h2>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="agenda-controls d-flex flex-wrap justify-content-md-end">
+                            <a class="btn btn-outline-secondary btn-sm mr-1 mb-1" th:href="@{/index(current=${current-1})}"> &xlarr; </a>
+                            <a class="btn btn-outline-primary btn-sm mr-1 mb-1" th:href="@{/index}">Today</a>
+                            <a class="btn btn-outline-secondary btn-sm mr-1 mb-1" th:href="@{/index(current=${current+1})}"> &xrarr; </a>
+                            <a class="btn btn-primary btn-sm mb-1" th:href="@{/agenda/add}">Add Task</a>
+                        </div>
                     </div>
                 </div>
 

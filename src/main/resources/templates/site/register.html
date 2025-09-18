@@ -17,12 +17,12 @@
 
     <!-- content -->
     <div class="main">
-        <div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
+        <div class="container px-3 px-md-5 pt-3 pb-3 mt-3 mb-3">
             <h3 class="text-center text-info border-bottom pb-3">Register</h3>
             <form class="mt-5" method="post" th:action="@{/register}">
                 <div class="form-group row">
-                    <label for="username" class="col-sm-2 col-form-label text-right">Username:</label>
-                    <div class="col-sm-10">
+                    <label for="username" class="col-12 col-md-2 col-form-label text-md-right">Username:</label>
+                    <div class="col-12 col-md-10">
                         <input type="text"
                                th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|"
                                th:value="${user!=null?user.username:''}"
@@ -33,8 +33,8 @@
                     </div>
                 </div>
                 <div class="form-group row mt-4">
-                    <label for="password" class="col-sm-2 col-form-label text-right">Password:</label>
-                    <div class="col-sm-10">
+                    <label for="password" class="col-12 col-md-2 col-form-label text-md-right">Password:</label>
+                    <div class="col-12 col-md-10">
                         <input type="password"
                                th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|"
                                th:value="${user!=null?user.password:''}"
@@ -45,8 +45,8 @@
                     </div>
                 </div>
                 <div class="form-group row mt-4">
-                    <label for="confirm-password" class="col-sm-2 col-form-label text-right">Repeat Passwd:</label>
-                    <div class="col-sm-10">
+                    <label for="confirm-password" class="col-12 col-md-2 col-form-label text-md-right">Repeat Passwd:</label>
+                    <div class="col-12 col-md-10">
                         <input type="password" class="form-control"
                                th:value="${user!=null?user.password:''}"
                                id="confirm-password" placeholder="please repeat your password" required>
@@ -56,8 +56,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label text-right">Email:</label>
-                    <div class="col-sm-10">
+                    <label for="email" class="col-12 col-md-2 col-form-label text-md-right">Email:</label>
+                    <div class="col-12 col-md-10">
                         <input type="email"
                                th:class="|form-control ${emailMsg!=null?'is-invalid':''}|"
                                th:value="${user!=null?user.email:''}"
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div class="form-group row mt-4">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-10 text-center">
+                    <div class="col-12 col-md-2"></div>
+                    <div class="col-12 col-md-10 text-center">
                         <button type="submit" class="btn btn-info text-white form-control">Register Now</button>
                     </div>
                 </div>
