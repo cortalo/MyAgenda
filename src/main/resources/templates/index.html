@@ -37,8 +37,8 @@
                                 <img src="http://images.nowcoder.com/head/1t.png" class="rounded-circle" style="width:30px;"/>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center" href="site/profile.html">Profile</a>
-                                <a class="dropdown-item text-center" href="site/setting.html">Setting</a>
+<!--                                <a class="dropdown-item text-center" href="site/profile.html">Profile</a>-->
+<!--                                <a class="dropdown-item text-center" href="site/setting.html">Setting</a>-->
                                 <a class="dropdown-item text-center" th:href="@{/logout}">Logout</a>
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-item text-center text-secondary" th:utext="${loginUser.username}">nowcoder</span>
@@ -46,10 +46,10 @@
                         </li>
                     </ul>
                     <!-- search -->
-                    <form class="form-inline my-2 my-lg-0" action="site/search.html">
-                        <input class="form-control mr-sm-2" type="search" aria-label="Search" />
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">search</button>
-                    </form>
+<!--                    <form class="form-inline my-2 my-lg-0" action="site/search.html">-->
+<!--                        <input class="form-control mr-sm-2" type="search" aria-label="Search" />-->
+<!--                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">search</button>-->
+<!--                    </form>-->
                 </div>
             </nav>
         </div>
@@ -71,17 +71,17 @@
                 </div>
 
                 <!-- Filter Bar -->
-                <div class="filter-bar mb-3">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button type="button" class="btn btn-outline-dark active" data-filter="all">All</button>
-                                <button type="button" class="btn btn-outline-success" data-filter="done">Done</button>
-                                <button type="button" class="btn btn-outline-secondary" data-filter="todo">Todo</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="filter-bar mb-3">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-8">-->
+<!--                            <div class="btn-group btn-group-sm" role="group">-->
+<!--                                <button type="button" class="btn btn-outline-dark active" data-filter="all">All</button>-->
+<!--                                <button type="button" class="btn btn-outline-success" data-filter="done">Done</button>-->
+<!--                                <button type="button" class="btn btn-outline-secondary" data-filter="todo">Todo</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
             <!-- Agenda View -->
@@ -100,10 +100,10 @@
                             <div class="item-content">
                                 <span class="todo-keyword">TODO</span>
                                 <span class="item-title" th:utext="${agenda.title}">Team meeting: Project review</span>
-                                <span class="item-tags">
-                                    <span class="tag">:work:</span>
-                                    <span class="tag">:meeting:</span>
-                                </span>
+<!--                                <span class="item-tags">-->
+<!--                                    <span class="tag">:work:</span>-->
+<!--                                    <span class="tag">:meeting:</span>-->
+<!--                                </span>-->
                             </div>
                         </li>
                     </ul>
