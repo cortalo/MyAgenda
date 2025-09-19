@@ -6,7 +6,7 @@
     <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/global.css}" />
-    <title>Add Task</title>
+    <title>Update Task</title>
 </head>
 <body>
 <div class="nk-container">
@@ -17,13 +17,13 @@
     <!-- content -->
     <div class="main">
         <div class="container px-3 px-md-5 pt-3 pb-3 mt-3 mb-3">
-            <h3 class="text-center text-info border-bottom pb-3">Add New Task</h3>
-            <form class="mt-5" method="post" th:action="@{/add}">
+            <h3 class="text-center text-info border-bottom pb-3">Update Task</h3>
+            <form class="mt-5" method="post" th:action="@{|/update/${agendaEntry.id}|}">
                 <div class="form-group row">
                     <label for="title" class="col-12 col-md-2 col-form-label text-md-right">Title:</label>
                     <div class="col-12 col-md-10">
                         <input type="text" class="form-control"
-                               name="title" value=""
+                               name="title" th:value="${agendaEntry.title}"
                                id="title" placeholder="Enter task title" required>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <label for="content" class="col-12 col-md-2 col-form-label text-md-right">Description:</label>
                     <div class="col-12 col-md-10">
                         <input type="text" class="form-control"
-                               name="content" value=""
+                               name="content" th:value="${agendaEntry.content}"
                                id="content" placeholder="(Optional) task description">
                     </div>
                 </div>
@@ -39,23 +39,23 @@
                     <label for="date" class="col-12 col-md-2 col-form-label text-md-right">Date:</label>
                     <div class="col-12 col-md-5">
                         <input type="date" class="form-control"
-                               name="dateString" th:value="${#dates.format(today,'yyyy-MM-dd')}"
+                               name="dateString" th:value="${#dates.format(agendaEntry.startTime,'yyyy-MM-dd')}"
                                id="date" required onchange="updateDayName()">
                     </div>
                     <div class="col-12 col-md-5">
-                        <span class="input-group-text" id="dayName" th:text="${#dates.format(today, 'EEEE')}"></span>
+                        <span class="input-group-text" id="dayName" th:text="${#dates.format(agendaEntry.startTime, 'EEEE')}"></span>
                     </div>
                 </div>
                 <div class="form-group row mt-4">
                     <label for="startTime" class="col-12 col-md-2 col-form-label text-md-right">Time:</label>
                     <div class="col-12 col-md-5">
                         <input type="time" class="form-control"
-                               name="startTimeString" value="09:00"
+                               name="startTimeString" th:value="${#dates.format(agendaEntry.startTime,'HH:mm')}"
                                id="startTime" placeholder="Start Time" required>
                     </div>
                     <div class="col-12 col-md-5">
                         <input type="time" class="form-control"
-                               name="endTimeString" value="10:00"
+                               name="endTimeString" th:value="${#dates.format(agendaEntry.endTime,'HH:mm')}"
                                id="endTime" placeholder="End Time" required>
                     </div>
                 </div>
@@ -63,14 +63,14 @@
                     <label for="type" class="col-12 col-md-2 col-form-label text-md-right">Repeat:</label>
                     <div class="col-12 col-md-5">
                         <select class="form-control" name="repeatType" id="repeat" required>
-                            <option value="0" selected>No Repeat</option>
-                            <option value="1">Repeat By Weeks</option>
-                            <option value="2">Repeat By Days</option>
+                            <option value="0" th:selected="${repeatType == 0}">No Repeat</option>
+                            <option value="1" th:selected="${repeatType == 1}">Repeat By Weeks</option>
+                            <option value="2" th:selected="${repeatType == 2}">Repeat By Days</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-5">
                         <input type="text" class="form-control"
-                               name="repeatNum" value=""
+                               name="repeatNum" th:value="${repeatNum}"
                                id="repeatNum" placeholder="(Optional) repeat num">
                     </div>
                 </div>
@@ -79,16 +79,16 @@
                     <div class="col-12 col-md-10">
                         <select class="form-control" name="type" id="type" required>
                             <option value="">Select status</option>
-                            <option value="0" selected>TODO</option>
-                            <option value="1">DONE</option>
-                            <option value="2">CANCELLED</option>
+                            <option value="0" th:selected="${agendaEntry.type == 0}">TODO</option>
+                            <option value="1" th:selected="${agendaEntry.type == 1}">DONE</option>
+<!--                            <option value="2">CANCELLED</option>-->
                         </select>
                     </div>
                 </div>
                 <div class="form-group row mt-4">
                     <div class="col-12 col-md-2"></div>
                     <div class="col-12 col-md-10 text-center">
-                        <button type="submit" class="btn btn-info text-white form-control">Add Task</button>
+                        <button type="submit" class="btn btn-info text-white form-control">Update Task</button>
                     </div>
                 </div>
                 <div class="form-group row mt-2">

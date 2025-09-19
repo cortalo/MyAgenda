@@ -39,5 +39,22 @@
         order by start_time asc
     </select>
 
+    <select id="selectById" resultType="AgendaEntry">
+        select <include refid="selectFields"></include>
+        from agenda_entry
+        where id = #{id}
+    </select>
+
+    <update id="updateAgendaEntry">
+        update agenda_entry
+        set title = #{title},
+            content = #{content},
+            type = #{type},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            repeat_days = #{repeatDays}
+        where id = #{id}
+    </update>
+
 
 </mapper>

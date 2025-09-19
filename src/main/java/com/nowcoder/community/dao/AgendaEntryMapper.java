@@ -27,4 +27,8 @@ public interface AgendaEntryMapper {
      */
     List<AgendaEntry> selectAgendaEntriesByDay(int userId, LocalDateTime startTime);
 
+    AgendaEntry selectById(int id);
+
+    int updateAgendaEntry(AgendaEntry agendaEntry);
+
 }

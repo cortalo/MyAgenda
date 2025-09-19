@@ -75,9 +75,9 @@ function initAgenda() {
 	});
 
 	// Task item interactions
-	$(document).on('click', '.agenda-item', function() {
-		toggleTaskStatus(this);
-	});
+//	$(document).on('click', '.agenda-item', function() {
+//		toggleTaskStatus(this);
+//	});
 
 	// Add task functionality
 	$('#addTaskBtn').click(function() {

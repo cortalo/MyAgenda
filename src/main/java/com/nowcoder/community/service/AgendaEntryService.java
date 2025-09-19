@@ -66,4 +66,12 @@ public class AgendaEntryService {
         return list;
     }
 
+    public AgendaEntry findById(int id) {
+        return agendaEntryMapper.selectById(id);
+    }
+
+    public int updateAgendaEntry(AgendaEntry agendaEntry) {
+        return agendaEntryMapper.updateAgendaEntry(agendaEntry);
+    }
+
 }
