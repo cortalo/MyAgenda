@@ -63,7 +63,14 @@ public class HomeController implements CommunityConstant {
         for (Date date : weekDates) {
             Map<String, Object> map = new HashMap<>();
             map.put("date", date);
-            map.put("formattedDate", formatter.format(date));
+
+            // Check if this date is today
+            boolean isToday = isSameDay(today, date);
+            String formattedDate = formatter.format(date);
+            if (isToday) {
+                formattedDate = "* " + formattedDate;
+            }
+            map.put("formattedDate", formattedDate);
             if (user == null) {
                 List<AgendaEntry> agendaEntries = agendaEntryService.example(date);
                 map.put("agendaEntries", agendaEntries);
@@ -78,6 +85,15 @@ public class HomeController implements CommunityConstant {
         model.addAttribute("days", days);
         model.addAttribute("current", current);
         return "/index";
+    }
+
+    private boolean isSameDay(Date date1, Date date2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(date1);
+        cal2.setTime(date2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+               cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
 }
