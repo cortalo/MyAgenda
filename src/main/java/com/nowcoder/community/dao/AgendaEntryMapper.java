@@ -3,7 +3,7 @@ package com.nowcoder.community.dao;
 import com.nowcoder.community.entity.AgendaEntry;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -25,7 +25,7 @@ public interface AgendaEntryMapper {
      * @param startTime: match startTime by DATE
      * @return a list of agendaEntry
      */
-    List<AgendaEntry> selectAgendaEntriesByDay(int userId, LocalDateTime startTime);
+    List<AgendaEntry> selectAgendaEntriesByDay(int userId, Date startTime);
 
     AgendaEntry selectById(int id);
 

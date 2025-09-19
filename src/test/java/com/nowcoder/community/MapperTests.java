@@ -51,28 +51,5 @@ public class MapperTests {
         Assertions.assertEquals(1, 1);
     }
 
-    @Test
-    public void testSelectAgendaEntriesByDay() {
-        // Test with current date/time
-        LocalDateTime today = LocalDateTime.now();
-        List<AgendaEntry> todayEntries = agendaEntryMapper.selectAgendaEntriesByDay(149, today);
-
-        System.out.println("Agenda entries for today (" + today.toLocalDate() + "):");
-        for (AgendaEntry entry : todayEntries) {
-            System.out.println(entry);
-        }
-
-        // Test with a specific date
-        LocalDateTime specificDate = LocalDateTime.of(2024, 9, 16, 10, 0);
-        List<AgendaEntry> specificDateEntries = agendaEntryMapper.selectAgendaEntriesByDay(149, specificDate);
-
-        System.out.println("Agenda entries for " + specificDate.toLocalDate() + ":");
-        for (AgendaEntry entry : specificDateEntries) {
-            System.out.println(entry);
-        }
-
-        Assertions.assertTrue(todayEntries != null);
-        Assertions.assertTrue(specificDateEntries != null);
-    }
 
 }

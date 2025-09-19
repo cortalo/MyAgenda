@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.DayOfWeek;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Calendar;
 
 @Controller
 public class HomeController implements CommunityConstant {
@@ -40,27 +38,38 @@ public class HomeController implements CommunityConstant {
                                @RequestParam(name = "current", required = false, defaultValue = "0") int current) {
 
         User user = hostHolder.getUser();
-        LocalDate today = LocalDate.now();
+        // get start of the day
+        Calendar cal = Calendar.getInstance();
+        Date today = new Date();
+        cal.setTime(today);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        today = cal.getTime();
 
         // Get a list of dates for this week (Monday to Sunday)
-        LocalDate monday = today.with(DayOfWeek.MONDAY);
-        List<LocalDate> weekDates = new ArrayList<>();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, current);
+
+        List<Date> weekDates = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            weekDates.add(monday.plusDays(i + current * 7));
+            weekDates.add(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH, 1);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE dd MMMM yyyy");
 
         List<Map<String, Object>> days = new ArrayList<>();
-        for (LocalDate date : weekDates) {
+        for (Date date : weekDates) {
             Map<String, Object> map = new HashMap<>();
             map.put("date", date);
-            map.put("formattedDate", date.format(formatter));
+            map.put("formattedDate", formatter.format(date));
             if (user == null) {
-                List<AgendaEntry> agendaEntries = agendaEntryService.example(date.atStartOfDay());
+                List<AgendaEntry> agendaEntries = agendaEntryService.example(date);
                 map.put("agendaEntries", agendaEntries);
                 map.put("agendaCounts", agendaEntries.size());
             } else {
-                List<AgendaEntry> agendaEntries = agendaEntryService.findAgendaEntriesByDay(user.getId(), date.atStartOfDay());
+                List<AgendaEntry> agendaEntries = agendaEntryService.findAgendaEntriesByDay(user.getId(), date);
                 map.put("agendaEntries", agendaEntries);
                 map.put("agendaCounts", agendaEntries.size());
             }

@@ -34,7 +34,8 @@
         select <include refid="selectFields"></include>
         from agenda_entry
         where user_id = #{userId}
-        and DATE(start_time) = DATE(#{startTime})
+        and start_time >= #{startTime}
+        and start_time &lt; DATE_ADD(#{startTime}, INTERVAL 24 HOUR)
         and repeat_days = 0
         order by start_time asc
     </select>
