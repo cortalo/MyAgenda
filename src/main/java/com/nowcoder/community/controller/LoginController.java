@@ -116,8 +116,8 @@ public class LoginController implements CommunityConstant {
         if (loginResult.containsKey("ticket")) {
             Cookie cookie = new Cookie("ticket", loginResult.get("ticket").toString());
             cookie.setPath(contextPath);
-            /* cookie max age 3600 seconds */
-            cookie.setMaxAge(3600);
+            /* cookie max age 3600 * 24 * 30 seconds */
+            cookie.setMaxAge(3600 * 24 * 30);
             response.addCookie(cookie);
             return "redirect:/index";
         } else {

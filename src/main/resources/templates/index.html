@@ -94,7 +94,7 @@
                                     th:text="${#dates.format(agenda.endTime,'HH:mm')}">10:00</span>
                             </div>
                             <div class="item-content">
-                                <span class="todo-keyword" th:text="${agenda.type==0?'TODO':'DONE'}">TODO</span>
+                                <span th:class="${agenda.type==0?'todo-keyword':'done-keyword'}" th:text="${agenda.type==0?'TODO':'DONE'}">TODO</span>
                                 <a class="item-title" th:utext="${agenda.title}" th:href="@{|/update/${agenda.id}|}">Team meeting: Project review</a>
 <!--                                <span class="item-tags">-->
 <!--                                    <span class="tag">:work:</span>-->
