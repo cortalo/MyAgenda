@@ -1,4 +1,4 @@
-function Navigation() {
+function Navigation({ todayHandler }) {
   return (
     <div className="agenda-header">
       <div className="row mb-3">
@@ -7,14 +7,24 @@ function Navigation() {
         </div>
         <div className="col-12 col-md-6">
           <div className="agenda-controls d-flex flex-wrap justify-content-md-end">
-            <a className="btn btn-outline-secondary btn-sm mr-1 mb-1">&larr;</a>
-            <a
+            <button
+              className="btn btn-outline-secondary btn-sm mr-1 mb-1"
+              onClick={() => todayHandler(-7, false)}
+            >
+              &larr;
+            </button>
+            <button
               className="btn btn-outline-primary btn-sm mr-1 mb-1"
-              href="/index"
+              onClick={() => todayHandler(0, true)}
             >
               Today
-            </a>
-            <a className="btn btn-outline-secondary btn-sm mr-1 mb-1">&rarr;</a>
+            </button>
+            <button
+              className="btn btn-outline-secondary btn-sm mr-1 mb-1"
+              onClick={() => todayHandler(7, false)}
+            >
+              &rarr;
+            </button>
             <a className="btn btn-primary btn-sm mb-1" href="/add">
               Add Task
             </a>

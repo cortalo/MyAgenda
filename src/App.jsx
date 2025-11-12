@@ -1,32 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DayEntry from "./DayEntry";
 import Header from "./Header";
 import Navigation from "./Navigation";
-import { getAgenda } from "./services/apiAgenda";
-import { getDateString, getWeekDates } from "./utils/helper";
+import { getWeekDates } from "./utils/helper";
 
 function App() {
-  // Sample static data
-
-  const [agendas, setAgendas] = useState([]);
-
-  useEffect(function () {
-    const today = new Date();
-    getAgenda(getDateString(today)).then((data) => setAgendas(data));
-  }, []);
-
-  console.log(agendas);
-
   // const current = 0;
 
-  const days = getWeekDates(new Date());
+  const defaultToday = new Date();
+  const [today, setToday] = useState(defaultToday);
+
+  function todayHandler(num, isReset) {
+    // const newDay = new Date();
+    // newDay.setDate(today.getDate() + num);
+    if (isReset) {
+      setToday(new Date());
+    } else {
+      setToday((v) => {
+        const newDay = new Date(v);
+        newDay.setDate(newDay.getDate() + num);
+        return newDay;
+      });
+    }
+  }
+
+  const days = getWeekDates(today);
 
   return (
     <div className="nk-container">
       <Header />
       <div className="main">
         <div className="container agenda-container">
-          <Navigation />
+          <Navigation todayHandler={todayHandler} />
           <ul className="agenda-view">
             {days.map((day, dayIndex) => (
               <DayEntry day={day} key={dayIndex} />
