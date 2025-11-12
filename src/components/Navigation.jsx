@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navigation({ todayHandler }) {
   return (
     <div className="agenda-header">
@@ -25,9 +27,9 @@ function Navigation({ todayHandler }) {
             >
               &rarr;
             </button>
-            <a className="btn btn-primary btn-sm mb-1" href="/add">
+            <Link className="btn btn-primary btn-sm mb-1" to="/add">
               Add Task
-            </a>
+            </Link>
           </div>
         </div>
       </div>
