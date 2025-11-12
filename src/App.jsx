@@ -17,7 +17,7 @@ function App() {
 
   console.log(agendas);
 
-  const current = 0;
+  // const current = 0;
 
   const days = getWeekDates(new Date());
 
