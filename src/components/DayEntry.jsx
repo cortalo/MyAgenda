@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AgendaItem from "./AgendaItem";
-import { getDateString, getFormattedDate } from "./utils/helper";
-import { getAgenda } from "./services/apiAgenda";
+import { getDateString, getFormattedDate } from "../utils/helper";
+import { getAgenda } from "../services/apiAgenda";
 
 // Helper function to format time
 const formatTime = (date) => {
