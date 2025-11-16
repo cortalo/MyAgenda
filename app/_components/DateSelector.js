@@ -12,10 +12,12 @@ const dayNameList = [
   "Saturday",
 ];
 
-export default function DateSelector() {
-  const today = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
+export default function DateSelector({ thisAgenda }) {
+  const today = thisAgenda?.date
+    ? thisAgenda.date
+    : new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
   const [selectedDate, setSelectedDate] = useState(today);
-  const [dayName, setDayName] = useState(dayNameList[new Date().getDay()]);
+  const [dayName, setDayName] = useState(dayNameList[new Date(today).getDay()]);
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;

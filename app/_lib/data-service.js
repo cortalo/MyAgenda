@@ -15,6 +15,20 @@ export async function getAgenda(date, userId) {
   return data;
 }
 
+export async function getAgendaById(id) {
+  const { data, error } = await supabase
+    .from("agenda")
+    .select("*")
+    .eq("id", id);
+
+  if (error) {
+    console.log(error);
+    throw new Error("Cabins could not be loaded");
+  }
+
+  return data;
+}
+
 export async function getUser(email) {
   const { data, error } = await supabase
     .from("users")

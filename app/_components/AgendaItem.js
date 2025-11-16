@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function AgendaItem({ agenda }) {
   return (
     <li className={`agenda-item ${agenda.type === 0 ? "todo" : "done"}`}>
@@ -8,9 +10,9 @@ function AgendaItem({ agenda }) {
         <span className={agenda.type === 0 ? "todo-keyword" : "done-keyword"}>
           {agenda.type === 0 ? "TODO" : "DONE"}
         </span>
-        <a className="item-title" href={`/update/${agenda.id}`}>
+        <Link className="item-title" href={`/update/${agenda.id}`}>
           {agenda.event}
-        </a>
+        </Link>
       </div>
     </li>
   );
