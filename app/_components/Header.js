@@ -1,4 +1,9 @@
-function Header() {
+import Link from "next/link";
+import { auth } from "../_lib/auth";
+
+async function Header() {
+  const session = await auth();
+
   return (
     <header className="bg-dark sticky-top">
       <div className="container">
@@ -7,15 +12,15 @@ function Header() {
             className="navbar-nav w-100 d-flex flex-column flex-md-row"
             id="navbarSupportedContent"
           >
-            <a className="nav-link ml-3" href="/index">
-              Register
-            </a>
-            <a className="nav-link ml-3" href="/index">
-              Login
-            </a>
-            <a className="nav-link ml-3" href="/index">
-              Logout
-            </a>
+            {session?.user?.email ? (
+              <Link className="nav-link ml-3" href="/api/auth/signout">
+                Logout
+              </Link>
+            ) : (
+              <Link className="nav-link ml-3" href="/api/auth/signin">
+                Login
+              </Link>
+            )}
           </div>
         </nav>
       </div>
