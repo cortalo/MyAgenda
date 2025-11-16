@@ -1,6 +1,6 @@
 import AgendaItem from "./AgendaItem";
 import { getDateString, getFormattedDate } from "../_utils/helper";
-import { getAgenda } from "../_lib/data-service";
+import { getAgenda, getUser } from "../_lib/data-service";
 
 // Helper function to format time
 const formatTime = (date) => {
@@ -11,8 +11,12 @@ const formatTime = (date) => {
   });
 };
 
-async function DayEntry({ day }) {
-  const agendas = await getAgenda(getDateString(day));
+async function DayEntry({ day, session }) {
+  let agendas = [];
+  if (session?.user?.email) {
+    const user = await getUser(session.user.email);
+    agendas = await getAgenda(getDateString(day), user[0].id);
+  }
 
   const today = new Date();
 

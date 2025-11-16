@@ -1,10 +1,11 @@
 import supabase from "./supabase";
 
-export async function getAgenda(date) {
+export async function getAgenda(date, userId) {
   const { data, error } = await supabase
     .from("agenda")
     .select("*")
-    .eq("date", date);
+    .eq("date", date)
+    .eq("userId", userId);
 
   if (error) {
     console.log(error);
