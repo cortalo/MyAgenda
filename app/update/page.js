@@ -12,6 +12,16 @@ async function addEntry(formdata) {
   const user = users[0];
   const userId = user.id;
 
+  let actualRepeat = 0;
+  let isRepeat = false;
+  if (Number(formdata.get("repeatType")) === 1) {
+    actualRepeat = Number(formdata.get("repeatNum")) * 7;
+    isRepeat = true;
+  } else if (Number(formdata.get("repeatType")) === 2) {
+    actualRepeat = Number(formdata.get("repeatNum"));
+    isRepeat = true;
+  }
+
   const newentry = {
     userId: userId,
     event: formdata.get("title"),
@@ -22,6 +32,8 @@ async function addEntry(formdata) {
     repeatType: formdata.get("repeatType"),
     repeatNum: formdata.get("repeatNum") === "" ? 0 : formdata.get("repeatNum"),
     type: formdata.get("status"),
+    actualRepeat: actualRepeat,
+    isRepeat: isRepeat,
   };
 
   try {

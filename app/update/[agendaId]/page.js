@@ -8,6 +8,16 @@ import supabase from "@/app/_lib/supabase";
 async function addEntry(formdata) {
   "use server";
 
+  let actualRepeat = 0;
+  let isRepeat = false;
+  if (Number(formdata.get("repeatType")) === 1) {
+    actualRepeat = Number(formdata.get("repeatNum")) * 7;
+    isRepeat = true;
+  } else if (Number(formdata.get("repeatType")) === 2) {
+    actualRepeat = Number(formdata.get("repeatNum"));
+    isRepeat = true;
+  }
+
   const { data, erorr } = await supabase
     .from("agenda")
     .update({
@@ -20,6 +30,8 @@ async function addEntry(formdata) {
       repeatNum:
         formdata.get("repeatNum") === "" ? 0 : formdata.get("repeatNum"),
       type: formdata.get("status"),
+      actualRepeat: actualRepeat,
+      isRepeat: isRepeat,
     })
     .eq("id", formdata.get("agendaId"))
     .select();
