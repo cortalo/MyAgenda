@@ -2,26 +2,362 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #eee;
+  font-family: arial, STHeiti, "Microsoft YaHei", \5b8b\4f53;
+  font-size: 14px;
+  height: 100%;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.nk-container {
+  position: relative;
+  height: auto;
+  min-height: 100%;
+}
+
+.container {
+  max-width: 960px;
+  padding: 0;
+}
+
+header .navbar-brand {
+  background: url("http://static.nowcoder.com/images/res/logo/logo-v3.png")
+    no-repeat;
+  background-size: 147px 42px;
+  width: 147px;
+  height: 42px;
+  margin: 5px 15px 5px 0;
+}
+
+header .navbar {
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+header .badge {
+  position: absolute;
+  top: -3px;
+  left: 33px;
+}
+
+footer {
+  padding: 20px 0;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .qrcode {
+  text-align: center;
+}
+
+footer .detail-info {
+  border-left: 1px solid #888;
+}
+
+footer .company-info li {
+  padding-left: 16px;
+  margin: 4px 0;
+}
+
+.main {
+  padding: 20px 0;
+  padding-bottom: 200px;
+}
+
+.main .container {
+  background: #fff;
+  padding: 20px;
+}
+
+i {
+  font-style: normal;
+}
+
+u {
+  text-decoration: none;
+}
+
+b {
+  font-weight: normal;
+}
+
+a {
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+.font-size-14 {
+  font-size: 14px;
+}
+.font-size-16 {
+  font-size: 16px;
+}
+.font-size-18 {
+  font-size: 18px;
+}
+.font-size-20 {
+  font-size: 20px;
+}
+.font-size-22 {
+  font-size: 20px;
+}
+.font-size-24 {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.rt-0 {
+  right: 0;
+  top: 0;
+}
+
+.square {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #ff6547;
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
+
+.bg-gray {
+  background: #eff0f2;
+}
+
+.user-header {
+  width: 50px;
+  height: 50px;
+}
+
+em {
+  font-style: normal;
+  color: red;
+}
+
+/* Org Agenda Styles */
+.agenda-container {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  background: #fff;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+.agenda-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.agenda-header {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-bar .btn-group .btn {
+  border-radius: 3px;
+  margin-right: 2px;
+  font-size: 12px;
+}
+
+.filter-bar .btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Day Entry Styles */
+.day-entry {
+  margin-bottom: 30px;
+}
+
+.day-header h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2e8b57;
+  background-color: #f0f8ff;
+  padding: 8px 12px;
+  margin: 0;
+  border-left: 4px solid #2e8b57;
+  font-family: monospace;
+}
+
+.agenda-items {
+  background: #fafafa;
+  border-left: 2px solid #e0e0e0;
+  margin-left: 20px;
+}
+
+/* Agenda Item Styles */
+.agenda-item {
+  display: flex;
+  padding: 8px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: background-color 0.2s;
+}
+
+.agenda-item:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.agenda-item:last-child {
+  border-bottom: none;
+}
+
+.item-time {
+  min-width: 80px;
+  color: #666;
+  font-weight: bold;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* TODO Keywords */
+.todo-keyword {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.todo-keyword {
+  background-color: #ff4757;
+  color: white;
+}
+
+.done-keyword {
+  background-color: #2ed573;
+  color: white;
+}
+
+/* Item Title */
+.item-title {
+  flex: 1;
+  color: #333;
+  margin-right: 10px;
+}
+
+.done .item-title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Tags */
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.tag:hover {
+  background-color: #dee2e6;
+}
+
+/* Task status styles */
+.todo {
+  border-left: 3px solid #007bff;
+}
+
+.done {
+  border-left: 3px solid #2ed573;
+  opacity: 0.7;
+}
+
+/* Modal styles for better org-mode feel */
+.modal-content {
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.modal-title {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* Form styling */
+.form-control,
+.form-control:focus {
+  font-family: monospace;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .agenda-container {
+    padding: 10px;
   }
+
+  .agenda-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 10px;
+  }
+
+  .item-time {
+    margin-bottom: 5px;
+    margin-right: 0;
+    min-width: 60px;
+    font-size: 12px;
+  }
+
+  .day-header h4 {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .agenda-items {
+    margin-left: 10px;
+  }
+}
+
+/* Keyboard shortcut styles */
+kbd {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  color: #495057;
+  font-family: monospace;
+  font-size: 0.875rem;
+  padding: 0.2rem 0.4rem;
 }

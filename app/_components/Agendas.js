@@ -1,0 +1,27 @@
+import { getWeekDates } from "../_utils/helper";
+import DayEntry from "./DayEntry";
+import Navigation from "./Navigation";
+
+function Agendas({ params }) {
+  const defaultToday = new Date();
+  let today = new Date();
+  if (params && "offset" in params) {
+    today.setDate(defaultToday.getDate() + 7 * Number(params.offset));
+  }
+  const days = getWeekDates(today);
+
+  return (
+    <div className="main">
+      <div className="container agenda-container">
+        <Navigation params={params} />
+        <ul className="agenda-view">
+          {days.map((day, dayIndex) => (
+            <DayEntry day={day} key={dayIndex} />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default Agendas;
