@@ -14,7 +14,7 @@ async function Header() {
           >
             {session?.user?.email ? (
               <Link className="nav-link ml-3" href="/api/auth/signout">
-                Logout
+                {`Logout (${session.user.name})`}
               </Link>
             ) : (
               <Link className="nav-link ml-3" href="/api/auth/signin">
