@@ -13,3 +13,28 @@ export async function getAgenda(date) {
 
   return data;
 }
+
+export async function getUser(email) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", email);
+
+  if (error) {
+    console.log(error);
+    throw new Error("Users could not be loaded");
+  }
+
+  return data;
+}
+
+export async function insertData(tableName, dataObject) {
+  const { data, error } = await supabase.from(tableName).insert([dataObject]);
+
+  if (error) {
+    console.log("Error inserting data:", error);
+    throw error;
+  }
+
+  return data;
+}

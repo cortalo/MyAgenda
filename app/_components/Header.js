@@ -1,8 +1,21 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
+import { getUser, insertData } from "../_lib/data-service";
 
 async function Header() {
   const session = await auth();
+  if (session?.user?.email) {
+    const user = await getUser(session.user.email);
+    if (user.length === 0) {
+      try {
+        insertData("users", {
+          email: session.user.email,
+        });
+      } catch (error) {
+        console.log("failed: ", error);
+      }
+    }
+  }
 
   return (
     <header className="bg-dark sticky-top">

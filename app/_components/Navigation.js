@@ -29,7 +29,7 @@ function Navigation({ params }) {
             >
               &rarr;
             </Link>
-            <Link className="btn btn-primary btn-sm mb-1" href="/add">
+            <Link className="btn btn-primary btn-sm mb-1" href="/update-task">
               Add Task
             </Link>
           </div>
