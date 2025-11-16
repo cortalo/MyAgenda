@@ -3,7 +3,7 @@ export const getDateString = function (date) {
 };
 
 export const getFormattedDate = function (date) {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("en-GB", {
     weekday: "long",
     year: "numeric",
     month: "long",
