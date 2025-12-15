@@ -2,15 +2,13 @@ import Link from "next/link";
 import { auth } from "../_lib/auth";
 import { redirect } from "next/navigation";
 import DateSelector from "../_components/DateSelector";
-import { getUser, insertData } from "../_lib/data-service";
+import { insertData } from "../_lib/data-service";
 
 async function addEntry(formdata) {
   "use server";
 
   const session = await auth();
-  const users = await getUser(session.user.email);
-  const user = users[0];
-  const userId = user.id;
+  const userId = session?.user?.id;
 
   let actualRepeat = 0;
   let isRepeat = false;

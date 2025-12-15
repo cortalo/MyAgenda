@@ -2,7 +2,7 @@ import Link from "next/link";
 import { auth } from "../../_lib/auth";
 import { redirect } from "next/navigation";
 import DateSelector from "../../_components/DateSelector";
-import { getAgendaById, getUser, insertData } from "../../_lib/data-service";
+import { getAgendaById, insertData } from "../../_lib/data-service";
 import supabase from "@/app/_lib/supabase";
 
 async function addEntry(formdata) {
@@ -44,13 +44,12 @@ async function page({ params }) {
   if (!session?.user) {
     redirect("/api/auth/signin");
   }
-  const user = await getUser(session.user.email);
   const thisAgendas = await getAgendaById(params.agendaId);
   const thisAgenda = thisAgendas[0];
 
   if (
     thisAgenda.length === 0 ||
-    Number(thisAgenda.userId) !== Number(user[0].id)
+    Number(thisAgenda.userId) !== Number(session.user.id)
   ) {
     redirect("/");
   }
